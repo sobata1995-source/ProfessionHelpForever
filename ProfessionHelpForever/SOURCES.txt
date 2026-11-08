@@ -1,0 +1,42 @@
+Data checked 2026-11-08. Factual recipe ranges, counts and material quantities
+are derived from METAMMO Forever profession calculations (client 1.60.1.70790).
+These estimates are not a promise of exact skill gains or recipe availability.
+https://metammo.com/wow-forever/professions
+Individual pages: /engineering, /alchemy, /blacksmithing, /enchanting,
+/tailoring, /leatherworking, /cooking and /first-aid.
+
+Trainer names, rank headings, map IDs and coordinates:
+https://www.wow-professions.com/forever/engineering-trainers
+Corresponding *-trainers pages for alchemy, blacksmithing, enchanting,
+tailoring, leatherworking, cooking, first-aid, mining, herbalism, skinning,
+and fishing. Sources include the new Forever zones. Both factions included.
+Guide prose and source images are not bundled.
+
+API reference: https://github.com/Gethe/wow-ui-source/tree/forever
+
+Gathering zone/range facts checked 2026-11-08:
+https://www.wow-professions.com/forever/mining-leveling-guide
+https://www.wow-professions.com/forever/herbalism-leveling-guide
+https://www.wow-professions.com/forever/skinning-leveling-guide
+https://www.wow-professions.com/forever/fishing-leveling-guide
+Only range/resource/zone facts and paraphrased training requirements included.
+Area pins are deliberately approximate zone centres, not extracted node paths.
+
+Supply vendor inventory/name/location facts checked 2026-11-08:
+https://www.wow-professions.com/forever/npc/alexandra-bolero
+https://www.wow-professions.com/forever/npc/borya
+https://www.wow-professions.com/forever/npc/brooke-stonebraid
+https://www.wow-professions.com/forever/npc/catherine-leland
+https://www.wow-professions.com/forever/npc/eldraeith
+https://www.wow-professions.com/forever/npc/gorina
+https://www.wow-professions.com/forever/npc/korgeld
+https://www.wow-professions.com/forever/npc/shankys
+https://www.wow-professions.com/forever/npc/sumi
+https://www.wow-professions.com/forever/npc/tamar
+https://www.wow-professions.com/forever/npc/thurgrum-deepforge
+
+Initial material acquisition references:
+https://www.wow-professions.com/forever/mining-leveling-guide
+https://www.wow-professions.com/forever/engineering-leveling-guide
+https://db.icy-veins.com/wow-forever/items/2589
+Linen Cloth drop example: Southsea Cutthroat. No exact mob spawn pins bundled.

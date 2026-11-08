@@ -1,0 +1,17 @@
+## Interface: 16001
+## Title: Profession Help |cff68cfffForever|r
+## Notes: Forever alpha: live recipes, skill-up candidates, material totals and recipe sources.
+## Author: Profession Help
+## Version: 0.3.7-alpha
+## SavedVariablesPerCharacter: ProfessionHelpForeverDB
+Engine.lua
+Data.lua
+Gathering.lua
+Guide.lua
+Keep.lua
+UI.lua
+VendorData.lua
+ItemSources.lua
+MaterialSources.lua
+VendorCard.lua
+BagTooltip.lua
