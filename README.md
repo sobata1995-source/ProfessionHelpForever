@@ -45,11 +45,11 @@ Profession Help Forever is **free to download and use**. If it helps you, you ca
 
 Real screenshots captured in the Forever client (0.3.7-alpha).
 
-![Material sources, vendor costs and map button](media/material-vendor.png)
+![Material sources and vendor costs](media/material-vendor.jpg)
 
-![Profession selector](media/profession-selector.png)
+![Profession selector](media/profession-selector.jpg)
 
-![Vendor location on the world map](media/vendor-map.png)
+![Trainer location on the world map](media/trainer-map.jpg)
 
 ## Credits and data
 
