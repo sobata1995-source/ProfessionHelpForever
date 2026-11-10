@@ -180,8 +180,16 @@ function P.Toggle()
  if f:IsShown() then f:Hide() else f:Show();P.RefreshGathering();P.Queue();P.Render() end
 end
 local mini=CreateFrame("Button","ProfessionHelpForeverMinimapButton",Minimap);P.minimapButton=mini
-mini:SetSize(32,32);mini:SetPoint("BOTTOMLEFT",Minimap,"BOTTOMLEFT",-2,-2);mini:RegisterForClicks("LeftButtonUp");mini:SetFrameLevel(Minimap:GetFrameLevel()+8)
-local icon=mini:CreateTexture(nil,"ARTWORK");icon:SetTexture("Interface\\Icons\\Trade_Engineering");icon:SetSize(21,21);icon:SetPoint("CENTER")
+mini:SetSize(32,32);mini:RegisterForClicks("LeftButtonUp");mini:SetFrameLevel(Minimap:GetFrameLevel()+8)
+local function positionMinimapButton()
+ -- Lower-left point on the circular rim, including when the minimap is resized.
+ mini:ClearAllPoints()
+ mini:SetPoint("CENTER",Minimap,"CENTER",-Minimap:GetWidth()*.353553,-Minimap:GetHeight()*.353553)
+end
+positionMinimapButton();Minimap:HookScript("OnSizeChanged",positionMinimapButton)
+local icon=mini:CreateTexture(nil,"ARTWORK");icon:SetTexture("Interface\\Icons\\Trade_Engineering");icon:SetSize(28,28);icon:SetPoint("CENTER")
+local mask=mini:CreateMaskTexture();mask:SetTexture("Interface\\CharacterFrame\\TempPortraitAlphaMask","CLAMPTOBLACKADDITIVE","CLAMPTOBLACKADDITIVE");mask:SetSize(26,26);mask:SetPoint("CENTER");icon:AddMaskTexture(mask)
+local border=mini:CreateTexture(nil,"OVERLAY");border:SetTexture("Interface\\Common\\RingBorder");border:SetSize(34,34);border:SetPoint("CENTER")
 mini:SetHighlightTexture("Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight");mini:SetScript("OnClick",P.Toggle)
 mini:SetScript("OnEnter",function(self) GameTooltip:SetOwner(self,"ANCHOR_LEFT");GameTooltip:SetText("Profession Help: Forever");GameTooltip:AddLine("Click to open / close. Manual command: /phf",1,1,1);GameTooltip:Show() end)
 mini:SetScript("OnLeave",function() GameTooltip:Hide() end)

@@ -28,6 +28,10 @@ function CreateFrame(kind,name,parent,template)
 end
 function methods:CreateFontString() return CreateFrame('FontString') end
 function methods:CreateTexture() return CreateFrame('Texture') end
+function methods:CreateMaskTexture() return CreateFrame('MaskTexture') end
+function methods:AddMaskTexture(mask) self.mask=mask end
+function methods:GetWidth() return 140 end
+function methods:GetHeight() return 140 end
 Minimap=CreateFrame('Frame');GameTooltip=CreateFrame('Frame')
 function GetBuildInfo() return '1.60.1','70862','',16001 end
 current=202;counter=1;linked=false;readCount=0;ids={1,2,3};emit=false

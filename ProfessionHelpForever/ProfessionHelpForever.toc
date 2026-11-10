@@ -2,7 +2,7 @@
 ## Title: Profession Help |cff68cfffForever|r
 ## Notes: Forever alpha: live recipes, skill-up candidates, material totals and recipe sources.
 ## Author: Profession Help
-## Version: 0.3.7-alpha
+## Version: 0.3.8-alpha
 ## SavedVariablesPerCharacter: ProfessionHelpForeverDB
 Engine.lua
 Data.lua
