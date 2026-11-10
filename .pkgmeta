@@ -1,0 +1,14 @@
+package-as: ProfessionHelpForever-Package
+enable-nolib-creation: no
+move-folders:
+  ProfessionHelpForever-Package/ProfessionHelpForever: ProfessionHelpForever
+ignore:
+  - media
+  - tests
+  - README.md
+  - TESTING.md
+  - RELEASING.md
+  - requirements-test.txt
+manual-changelog:
+  filename: ProfessionHelpForever/CHANGELOG.txt
+  markup-type: text

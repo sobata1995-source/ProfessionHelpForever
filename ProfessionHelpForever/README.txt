@@ -1,4 +1,4 @@
-Profession Help Forever 0.3.8-alpha
+Profession Help Forever 0.3.8
 For the Blizzard Forever client, Interface 16001. Separate from the Wrath addon.
 
 Open with /phf or the minimap button. Profession opens a 12-profession menu.
