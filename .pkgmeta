@@ -1,7 +1,5 @@
-package-as: ProfessionHelpForever-Package
+package-as: ProfessionHelpForever
 enable-nolib-creation: no
-move-folders:
-  ProfessionHelpForever-Package/ProfessionHelpForever: ProfessionHelpForever
 ignore:
   - media
   - tests
@@ -9,4 +7,4 @@ ignore:
   - TESTING.md
   - RELEASING.md
   - requirements-test.txt
-manual-changelog: ProfessionHelpForever/CHANGELOG.txt
+manual-changelog: CHANGELOG.txt

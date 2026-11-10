@@ -1,4 +1,4 @@
-0.3.9
+0.3.10
 - Fix the minimap icon: circular mask and ring border.
 - Place the button on the lower-left minimap rim and update its position on resize.
 - Enable automatic CurseForge packaging from GitHub version tags.

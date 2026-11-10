@@ -55,7 +55,7 @@ C_TradeSkillUI={
 }
 C_Item={GetItemNameByID=function(id) return 'Material '..id end,GetItemCount=function() return 3 end}
 ''')
-root=Path(__file__).resolve().parents[1]/'ProfessionHelpForever'
+root=Path(__file__).resolve().parents[1]
 for name in ['Engine.lua','Data.lua','Gathering.lua','Guide.lua','Keep.lua','UI.lua','VendorData.lua','ItemSources.lua','MaterialSources.lua','VendorCard.lua','BagTooltip.lua']:
  lua.execute((root/name).read_text(encoding='utf-8-sig'),'ProfessionHelpForever')
 lua.execute(r'''

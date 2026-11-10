@@ -14,8 +14,8 @@ Normal releases use tags without alpha or beta. CurseForge derives the file type
 from the tag, not the GitHub pre-release checkbox. A source commit or release-body
 edit alone is not a new version. Do not upload a second copy of the ZIP manually.
 
-The .pkgmeta moves the nested source folder to ProfessionHelpForever/ in the ZIP
-and excludes tests and screenshots. This preserves the installed addon folder
+Addon files live at the repository root so CurseForge can find the TOC.
+The .pkgmeta packages them into ProfessionHelpForever/ and excludes tests and screenshots. This preserves the installed addon folder
 and SavedVariables so users can update their existing installation.
 
 Documentation: https://support.curseforge.com/support/solutions/articles/9000197281
