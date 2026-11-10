@@ -9,6 +9,4 @@ ignore:
   - TESTING.md
   - RELEASING.md
   - requirements-test.txt
-manual-changelog:
-  filename: ProfessionHelpForever/CHANGELOG.txt
-  markup-type: text
+manual-changelog: ProfessionHelpForever/CHANGELOG.txt
