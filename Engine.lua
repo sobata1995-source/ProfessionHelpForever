@@ -1,5 +1,5 @@
 local addon = ...
-ProfessionHelpForever = {version="0.3.11", recipes={}, batch=1, page=1, mode="Leveling"}
+ProfessionHelpForever = {version="0.3.12", recipes={}, batch=1, page=1, mode="Leveling"}
 local P=ProfessionHelpForever
 local API=C_TradeSkillUI
 function P.Read(fn,...)

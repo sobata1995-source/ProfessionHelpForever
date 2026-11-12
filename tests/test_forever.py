@@ -191,9 +191,9 @@ P.catalog.Engineering.routes={
  {low=1,high=10,name='Part',crafts=9},
  {low=10,high=20,name='Device',crafts=10,materials={{name='Part',quantity=2}}}}
 local advice=P.KeepAdvice('Part',1)
-assert(advice:find('KEEP:',1,true) and advice:find('~10 total',1,true) and advice:find('Device',1,true))
-P.info.skillLevel=20;assert(not P.KeepAdvice('Part',1):find('Later in this route',1,true))
-assert(P.KeepAdvice('An Unknown Item',1):find('SELL / USE / CHECK',1,true))
+assert(advice:find('|cff00ff00KEEP|r',1,true) and advice:find('~10 needed',1,true) and advice:find('Device',1,true))
+P.info.skillLevel=20;assert(P.KeepAdvice('Part',1):find('|cffff3333SELL|r',1,true))
+assert(P.KeepAdvice('An Unknown Item',1):find('|cffff3333SELL|r',1,true))
 assert(P.KeepAdvice('Silverleaf',1):find('Alchemy',1,true))
 P.catalog.Engineering.routes=savedRoutes
 P.browse='Mining';assert(P.GatherKeepSection():find('Engineering',1,true))
@@ -208,10 +208,12 @@ C_Item.GetItemNameByID=function(id) return id==1 and 'Silverleaf' or 'Unknown it
 C_Item.GetItemCount=function() return 3 end
 P.browse='Fishing'
 local lines=P.BagAdvice(1);local text=table.concat(lines,'\n')
-assert(text:find('KEEP:',1,true) and text:find('Alchemy:',1,true) and text:find('Bags: 3',1,true))
-assert(text:find('bank excluded',1,true))
-bagRank=300;assert(not table.concat(P.BagAdvice(1),'\n'):find('KEEP:',1,true))
-assert(table.concat(P.BagAdvice(2),'\n'):find('SELL / USE / CHECK',1,true))
+assert(text:find('|cff00ff00KEEP|r',1,true) and text:find('Alchemy',1,true) and text:find('Bags: 3',1,true))
+assert(text:find('Keep this item, you will need it for',1,true))
+assert(P.KeepAdvice('Mining Pick'):find('|cff00ff00KEEP|r',1,true))
+assert(not text:find('CHECK',1,true))
+bagRank=300;assert(not table.concat(P.BagAdvice(1),'\n'):find('|cff00ff00KEEP|r',1,true))
+assert(table.concat(P.BagAdvice(2),'\n'):find('|cffff3333SELL|r',1,true))
 local getter='GetBagItem';local added=0
 function GameTooltip:GetPrimaryTooltipInfo() return {getterName=getter} end
 function GameTooltip:AddLine() added=added+1 end

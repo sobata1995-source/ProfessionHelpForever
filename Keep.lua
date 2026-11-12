@@ -1,8 +1,21 @@
 local P=ProfessionHelpForever
+P.toolUses={['Mining Pick']='Mining',['Blacksmith Hammer']='Blacksmithing',
+ ['Skinning Knife']='Skinning',["Chef's Knife"]='Cooking',['Fishing Pole']='Fishing',
+ ['Arclight Spanner']='Engineering',['Gyromatic Micro-Adjustor']='Engineering',
+ ['Runed Copper Rod']='Enchanting',['Runed Silver Rod']='Enchanting',
+ ['Runed Golden Rod']='Enchanting',['Runed Truesilver Rod']='Enchanting',
+ ['Runed Arcanite Rod']='Enchanting'}
+function P.KeepMessage(use)
+ return '|cff00ff00KEEP|r\nKeep this item, you will need it for '..use..'.'
+end
+function P.SellMessage()
+ return '|cffff3333SELL|r\nSell this item; no future need in the leveling guide.'
+end
 -- Only positive dependencies in the bundled routes are authoritative here.
 -- Absence from a leveling route never proves an item is globally useless.
 function P.KeepAdvice(name,stepIndex)
- if not name or name=="" then return "CHECK: item name is not available yet." end
+ if not name or name=="" then return "Item data is loading." end
+ if P.toolUses[name] then return name.."\n"..P.KeepMessage(P.toolUses[name]) end
  local own,other={},{}
  local total=0
  local current=P.DisplayInfo()
@@ -27,31 +40,27 @@ function P.KeepAdvice(name,stepIndex)
   end
  end
  if #own>0 then
-  return "|cff66dd88KEEP: "..name.."|r\nLater in this route: ~"..total.." total needed (not a missing/bag count).\n"..table.concat(own,", ")
+  return name.."\n"..P.KeepMessage(table.concat(own,", ")).."\n~"..total.." needed for later steps."
  end
  local uses={}
  for _,profession in ipairs(P.professionOrder) do if other[profession] then uses[#uses+1]=profession end end
- if #uses>0 then return "|cffffd36bKEEP / SELL: "..name.."|r\nUsed in "..table.concat(uses,", ").." routes. Keep if you plan to level those; sell surplus." end
- return "|cff9eb0c7SELL / USE / CHECK: "..name.."|r\nNo later use found in the bundled leveling routes. May still be useful for gear, quests, recipes or other players."
+ if #uses>0 then return name.."\n"..P.KeepMessage(table.concat(uses,", ").." leveling") end
+ return name.."\n"..P.SellMessage()
 end
 function P.KeepSection(output,materials,stepIndex)
- local lines={"\n|cffffd36bKEEP / SELL|r"}
+ local lines={"\n|cffffd36bITEM ADVICE|r"}
  local seen={}
  local function add(name)
   if name and not seen[name] then seen[name]=true;lines[#lines+1]=P.KeepAdvice(name,stepIndex) end
  end
  add(output)
  for _,m in ipairs(materials or {}) do add(m.name) end
- if not next(seen) then lines[#lines+1]="CHECK: no item data available for this step." end
- lines[#lines+1]="Reserve materials for your current batch first. Estimates cover direct route requirements only; extra crafts may need more. No automatic selling or deleting."
+ if not next(seen) then lines[#lines+1]="Item data is loading." end
+ lines[#lines+1]="Reserve current crafting materials first."
  return table.concat(lines,"\n\n")
 end
 function P.GatherKeepSection()
- local notes={
-  Mining="KEEP / SELL: ores, stones and gems can support Engineering and Blacksmithing. Check the matching bar's future requirements before smelting; not all ore should be smelted.",
-  Herbalism="KEEP / SELL: herbs can support Alchemy. Keep those needed by your planned recipes; sell surplus rather than discard it.",
-  Skinning="KEEP / SELL: leather and hides can support Leatherworking. Keep materials for your planned crafts; sell surplus.",
-  Fishing="KEEP / SELL / USE: check fish against Cooking recipes. Keep quest fish for their quests; other catches may have uses beyond leveling."
- }
- return "\n|cffffd36bKEEP / SELL|r\n"..notes[P.browse].."\n\nGathering advice covers categories, not every possible drop. An item absent from a guide is not automatically trash."
+ local uses={Mining='Engineering and Blacksmithing',Herbalism='Alchemy',
+  Skinning='Leatherworking',Fishing='Cooking'}
+ return '\n|cffffd36bITEM ADVICE|r\n'..P.KeepMessage(uses[P.browse] or 'profession leveling')
 end

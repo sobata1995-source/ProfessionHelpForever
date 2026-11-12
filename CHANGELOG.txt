@@ -1,3 +1,11 @@
+0.3.12
+- Simplify item advice to green KEEP or red SELL with short explanations.
+- KEEP identifies future recipes or professions; needed quantities remain visible.
+- Reusable profession tools remain KEEP. SELL refers to future leveling-guide needs.
+- Preserve the owned-tool vendor-popup fix.
+
+Automated Lua regression checks passed.
+
 0.3.11
 - Stop the automatic vendor map popup when hovering reusable profession tools already in your bags.
 - Clear any previous vendor popup when hovering a tool.

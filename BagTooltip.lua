@@ -28,10 +28,12 @@ end
 function P.BagAdvice(itemID)
  if not itemUses then buildIndex() end
  local name=P.Read(C_Item.GetItemNameByID,itemID)
- if not name then return {'CHECK: item data is still loading.'} end
+ if not name then return {'Item data is loading.'} end
+ if P.toolUses[name] then return {P.KeepMessage(P.toolUses[name])},{missing=0} end
  local uses=itemUses[name] or {}
  local skills=ownedSkills()
- local needed,byProfession,possible=0,{},{}
+ local needed=0
+ local recipeNames,seenRecipes={},{}
  local tracked=false
  for _,use in ipairs(uses) do
   local rank=skills[use.profession]
@@ -42,28 +44,20 @@ function P.BagAdvice(itemID)
     local crafts=math.ceil(step.crafts*math.max(0,step.high-math.max(step.low,rank))/math.max(1,step.high-step.low))
     local quantity=math.ceil(crafts*use.quantity)
     needed=needed+quantity
-    byProfession[use.profession]=(byProfession[use.profession] or 0)+quantity
+    local recipe=step.name.." ("..use.profession..")"
+    if not seenRecipes[recipe] then seenRecipes[recipe]=true;recipeNames[#recipeNames+1]=recipe end
    end
-  else possible[use.profession]=true end
+  end
  end
  local owned=P.Read(C_Item.GetItemCount,itemID,false,false,false) or 0
  local lines={}
  if needed>0 then
-  lines[#lines+1]='|cff66dd88KEEP: ~'..needed..' needed|r'
+  lines[#lines+1]=P.KeepMessage(table.concat(recipeNames,', '))
+  lines[#lines+1]='~'..needed..' needed'
   lines[#lines+1]='Bags: '..owned..' | Missing: '..math.max(0,needed-owned)
-  for _,profession in ipairs(P.professionOrder) do
-   if byProfession[profession] then lines[#lines+1]=profession..': ~'..byProfession[profession] end
-  end
-  if owned>needed then lines[#lines+1]='Above route estimate: '..(owned-needed)..' (review before selling)' end
  else
-  lines[#lines+1]='|cffffd36bSELL / USE / CHECK|r'
-  lines[#lines+1]='No remaining direct requirement found for your learned professions.'
+  lines[#lines+1]=P.SellMessage()
  end
- local others={}
- for _,profession in ipairs(P.professionOrder) do if possible[profession] then others[#others+1]=profession end end
- if #others>0 then lines[#lines+1]='Other possible uses: '..table.concat(others,', ') end
- lines[#lines+1]='Route estimates include the current step; bags only, bank excluded.'
- lines[#lines+1]='Other recipes, quests and indirect component needs may still use this item.'
  return lines,{missing=tracked and math.max(0,needed-owned) or nil}
 end
 function P.AppendBagTooltip(tooltip,data)
@@ -80,7 +74,7 @@ function P.AppendBagTooltip(tooltip,data)
   P.ShowVendorCard(data.id,true)
   tooltip.phfKeepAdded=true
   tooltip:AddLine(' ')
-  tooltip:AddLine('Profession Help - Keep / Sell',1,.82,.25)
+  tooltip:AddLine('Profession Help',1,.82,.25)
   for _,line in ipairs(lines) do tooltip:AddLine(line,1,1,1,true) end
  end)
  P.tooltipReading=false

@@ -20,7 +20,7 @@ A free in-game profession companion for the Blizzard **World of Warcraft: Foreve
 
 ## Install
 
-1. Download **ProfessionHelpForever-0.3.11.zip** from Releases.
+1. Download **ProfessionHelpForever-0.3.12.zip** from Releases.
 2. Extract the `ProfessionHelpForever` folder into `_forever_/Interface/AddOns/`.
 3. Enable the addon, then use `/reload` if the game is already open.
 4. Open `/phf` or click the minimap button. Open your profession for live recipe and material data.
