@@ -18,7 +18,13 @@ card:SetScript('OnUpdate',function(self,elapsed)
  if self.age>10 then self:Hide() end
 end)
 card:Hide()
-function P.ShowVendorCard(itemID)
+-- Reusable tools already in a bag do not need a vendor popup. Materials and
+-- recipes still do: owning some does not mean the player has enough.
+local reusableTools={[2901]=true,[5956]=true,[7005]=true,[6256]=true,[273636]=true}
+function P.ShowVendorCard(itemID,fromBag)
+ if fromBag and reusableTools[itemID] then
+  card.vendor=nil;card:Hide();return
+ end
  local vendor=P.FindItemVendor(itemID)
  if not vendor then card.vendor=nil;card:Hide();return end
  card.vendor=vendor;card.age=0

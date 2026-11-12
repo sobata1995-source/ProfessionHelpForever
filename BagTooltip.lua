@@ -77,7 +77,7 @@ function P.AppendBagTooltip(tooltip,data)
   local args=info.getterArgs
   local bagItem=C_Container and args and P.Read(C_Container.GetContainerItemInfo,args[1],args[2])
   for _,line in ipairs(P.ItemSources(data.id,bagItem and bagItem.isBound,plan and plan.missing)) do lines[#lines+1]=line end
-  P.ShowVendorCard(data.id)
+  P.ShowVendorCard(data.id,true)
   tooltip.phfKeepAdded=true
   tooltip:AddLine(' ')
   tooltip:AddLine('Profession Help - Keep / Sell',1,.82,.25)

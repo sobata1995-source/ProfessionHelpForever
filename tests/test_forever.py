@@ -243,6 +243,19 @@ P.vendorCard.scripts.OnUpdate(P.vendorCard,6);assert(not P.vendorCard:IsShown())
 P.ShowVendorCard(3371);P.ShowVendorCard(999999);assert(not P.vendorCard:IsShown() and not P.vendorCard.vendor)
 assert(P.recipeVendorItems['Free Action Potion'])
 P.ShowVendorCard(P.recipeVendorItems['Free Action Potion']);assert(P.vendorCard:IsShown())
+-- Hovering an owned tool clears a previous vendor popup; ordinary supplies
+-- retain their map card, and explicit tool-source lookups remain available.
+getter='GetBagItem'
+for _,id in ipairs({2901,5956,7005,6256,273636}) do
+ P.ShowVendorCard(3371)
+ GameTooltip.scripts.OnTooltipCleared(GameTooltip)
+ bagTooltipCallback(GameTooltip,{id=id})
+ assert(not P.vendorCard:IsShown() and not P.vendorCard.vendor,'owned tool popup: '..id)
+end
+GameTooltip.scripts.OnTooltipCleared(GameTooltip)
+bagTooltipCallback(GameTooltip,{id=3371});assert(P.vendorCard:IsShown(),'material popup lost')
+P.ShowVendorCard(2901);assert(P.vendorCard:IsShown(),'explicit tool source lost')
+assert(not P.tooltipReading and not P.tooltipError)
 UnitFactionGroup=function() return 'Horde' end
 local vial=P.FindItemVendor(3371)
 assert(vial.price==20 and vial.pack==5)

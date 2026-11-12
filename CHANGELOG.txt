@@ -1,3 +1,10 @@
+0.3.11
+- Stop the automatic vendor map popup when hovering reusable profession tools already in your bags.
+- Clear any previous vendor popup when hovering a tool.
+- Preserve vendor maps for materials, recipes and explicit tool lookups.
+
+Automated Lua regression checks passed.
+
 0.3.10
 - Fix the minimap icon: circular mask and ring border.
 - Place the button on the lower-left minimap rim and update its position on resize.
